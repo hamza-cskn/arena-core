@@ -1,0 +1,3 @@
+rootProject.name = 'arena-core'
+include 'bukkit'
+
