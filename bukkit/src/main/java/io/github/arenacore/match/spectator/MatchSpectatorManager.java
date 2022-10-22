@@ -1,6 +1,6 @@
 package io.github.arenacore.match.spectator;
 
-import io.github.arenacore.match.Match;
+import io.github.arenacore.match.IMatch;
 import io.github.arenacore.user.*;
 
 import java.util.Collections;
@@ -10,21 +10,21 @@ import java.util.UUID;
 
 public class MatchSpectatorManager {
 
-    private final Match match;
+    private final IMatch match;
     private final Map<UUID, ISpectator> spectators = new HashMap<>();
 
-    public MatchSpectatorManager(Match match) {
+    public MatchSpectatorManager(IMatch match) {
         this.match = match;
     }
 
-    public boolean spectate(User user) {
-        PureSpectator spectator = UserHandler.switchPureSpectator(user, match);
+    public boolean spectate(IUser user) {
+        IPureSpectator spectator = UserHandler.getInstance().switchPureSpectator(user, match);
         spectators.put(user.getPlayer().getUniqueId(), spectator);
         return true;
     }
 
-    public boolean spectate(Member member) {
-        SemiSpectator spectator = UserHandler.switchSemiSpectator(member, match);
+    public boolean spectate(IMember member) {
+        ISemiSpectator spectator = UserHandler.getInstance().switchSemiSpectator(member, match);
         spectators.put(member.getPlayer().getUniqueId(), spectator);
         return true;
     }

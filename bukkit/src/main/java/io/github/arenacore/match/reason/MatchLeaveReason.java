@@ -1,4 +1,4 @@
-package io.github.arenacore.match;
+package io.github.arenacore.match.reason;
 
 public enum MatchLeaveReason {
 

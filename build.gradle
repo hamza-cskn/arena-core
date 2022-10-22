@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'io.github'
-version '4.1.8'
+version '1.0.0'
 sourceCompatibility = 8
 compileJava.options.encoding = 'UTF-8'
 
@@ -48,6 +48,7 @@ subprojects {
     }
 
     tasks.shadowJar {
-        archiveFileName.set(project.name + "-" + project.version + ".jar")
+        //archiveFileName.set(project.name + "-" + project.version + ".jar")
+        archiveFileName.set("arena-core.jar")
     }
 }

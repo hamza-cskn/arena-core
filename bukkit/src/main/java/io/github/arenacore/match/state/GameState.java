@@ -1,22 +1,22 @@
 package io.github.arenacore.match.state;
 
 import io.github.arenacore.ArenaCore;
-import io.github.arenacore.match.Match;
-import io.github.arenacore.match.task.MatchTaskManager;
+import io.github.arenacore.match.IMatch;
 import net.minikloon.fsmgasm.State;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class GameState extends State implements Listener {
 
     protected final Map<String, Listener> listeners = new HashMap<>();
-    protected final MatchTaskManager matchTaskManager = new MatchTaskManager();
-    private final Match match;
+    private final IMatch match;
 
-    protected GameState(Match match) {
+    protected GameState(IMatch match) {
         super();
         this.match = match;
     }
@@ -33,22 +33,52 @@ public abstract class GameState extends State implements Listener {
         if (!super.getEnded()) return;
 
         new HashMap<>(listeners).keySet().forEach(this::unregister);
-        matchTaskManager.cancelTasks();
+        match.getTaskManager().cancelTask("state-" + hashCode());
     }
 
-    protected void register(String id, Listener listener) {
+    public void delayedTask(String id, Runnable mainRunnable, Runnable cancelRunnable, int delayInTicks) {
+        this.match.getTaskManager().delayedTask("state-" + hashCode() + "-" + id, mainRunnable, cancelRunnable, delayInTicks);
+    }
+
+    public void delayedTask(String id, Runnable mainRunnable, int delayInTicks) {
+        this.match.getTaskManager().delayedTask("state-" + hashCode() + "-" + id, mainRunnable, delayInTicks);
+    }
+
+    public void repeatTask(String id, Runnable mainRunnable, Runnable cancelRunnable, int delayInTicks) {
+        this.match.getTaskManager().repeatTask("state-" + hashCode() + "-" + id, mainRunnable, cancelRunnable, delayInTicks);
+    }
+
+    public void repeatTask(String id, Runnable mainRunnable, int periodInTicks) {
+        this.match.getTaskManager().repeatTask("state-" + hashCode() + "-" + id, mainRunnable, periodInTicks);
+    }
+
+    public void repeatTask(String id, Runnable mainRunnable, Runnable cancelRunnable, long delayInTicks, long periodInTicks) {
+        this.match.getTaskManager().repeatTask("state-" + hashCode() + "-" + id, mainRunnable, cancelRunnable, delayInTicks, periodInTicks);
+    }
+
+    public void register(String id, Listener listener) {
         listeners.put(id, listener);
         ArenaCore.getInstance().getServer().getPluginManager().registerEvents(listener, ArenaCore.getInstance());
     }
 
-    protected void unregister(String id) {
+    public void unregister(String id) {
         Listener listener = listeners.get(id);
         if (listener == null) return;
         listeners.remove(id);
         HandlerList.unregisterAll(listener);
     }
 
-    public MatchTaskManager getTaskManager() {
-        return matchTaskManager;
+    public IMatch getMatch() {
+        return match;
+    }
+
+    public Map<String, Listener> getListeners() {
+        return listeners;
+    }
+
+    @NotNull
+    @Override
+    public Duration getDuration() {
+        return Duration.ZERO;
     }
 }

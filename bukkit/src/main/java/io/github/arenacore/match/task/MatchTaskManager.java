@@ -11,39 +11,37 @@ public class MatchTaskManager {
 		tasks.put(task.getTaskName(), task);
 	}
 
-	public void repeatTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long delay, long period) {
-		registerTask(new MatchTask(taskName, mainRunnable, cancelRunnable, delay, period));
+	public void repeatTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long delayInTicks, long periodInTicks) {
+		registerTask(new MatchTask(taskName, mainRunnable, cancelRunnable, delayInTicks, periodInTicks));
 	}
 
-	public void repeatTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long period) {
-		repeatTask(taskName, mainRunnable, cancelRunnable, 0, period);
+	public void repeatTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long periodInTicks) {
+		repeatTask(taskName, mainRunnable, cancelRunnable, 0, periodInTicks);
 	}
 
-	public void repeatTask(String taskName, Runnable mainRunnable, long period) {
+	public void repeatTask(String taskName, Runnable mainRunnable, long periodInTicks) {
 		repeatTask(taskName, mainRunnable, () -> {
-		}, 0, period);
+		}, 0, periodInTicks);
 	}
 
-	public void delayedTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long delay) {
-		registerTask(new MatchTask(taskName, mainRunnable, cancelRunnable, delay));
+	public void delayedTask(String taskName, Runnable mainRunnable, Runnable cancelRunnable, long delayInTicks) {
+		registerTask(new MatchTask(taskName, mainRunnable, cancelRunnable, delayInTicks));
 	}
 
-	public void delayedTask(String taskName, Runnable mainRunnable, long delay) {
+	public void delayedTask(String taskName, Runnable mainRunnable, long delayInTicks) {
 		delayedTask(taskName, mainRunnable, () -> {
-		}, delay);
+		}, delayInTicks);
 	}
 
 	public void cancelTask(String prefix) {
-		for (Map.Entry<String, MatchTask> entry : tasks.entrySet()) {
-			if (entry.getKey().startsWith(prefix)) {
-				entry.getValue().cancel();
+		tasks.forEach((taskName, task) -> {
+			if (taskName.startsWith(prefix)) {
+				task.cancel();
 			}
-		}
+		});
 	}
 
 	public void cancelTasks() {
 		tasks.values().forEach(MatchTask::cancel);
 	}
-
-
 }
