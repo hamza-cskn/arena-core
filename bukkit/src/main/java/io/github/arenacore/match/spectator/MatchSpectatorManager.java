@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class MatchSpectatorManager {
+public class MatchSpectatorManager implements ISpectatorManager {
 
     private final IMatch match;
     private final Map<UUID, ISpectator> spectators = new HashMap<>();
