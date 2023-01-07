@@ -1,5 +1,7 @@
 package io.github.arenacore.user;
 
+import com.google.common.base.Preconditions;
+
 public class UserHandler {
 
     public static IUserManager instance;
@@ -9,6 +11,7 @@ public class UserHandler {
     }
 
     public static IUserManager getInstance() {
+        Preconditions.checkNotNull(instance, "UserHandler instance is not initialized!");
         return instance;
     }
 

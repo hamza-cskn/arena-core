@@ -3,7 +3,6 @@ package io.github.arenacore;
 import io.github.arenacore.match.reason.MatchLeaveReason;
 import io.github.arenacore.user.UserHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

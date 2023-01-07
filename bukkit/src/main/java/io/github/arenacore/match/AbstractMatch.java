@@ -3,7 +3,7 @@ package io.github.arenacore.match;
 import com.google.common.base.Preconditions;
 import io.github.arenacore.match.reason.MatchLeaveReason;
 import io.github.arenacore.match.spectator.MatchSpectatorManager;
-import io.github.arenacore.match.task.MatchTaskManager;
+import io.github.arenacore.match.task.TaskGroup;
 import io.github.arenacore.user.IMember;
 import io.github.arenacore.user.IUser;
 import io.github.arenacore.user.UserHandler;
@@ -12,19 +12,16 @@ import net.minikloon.fsmgasm.StateSeries;
 import org.bukkit.Bukkit;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-public abstract class Match implements IMatch {
+public abstract class AbstractMatch implements IMatch {
 
     private Duration updatePeriod = Duration.ofSeconds(1);
     private final Set<IMember> members = new HashSet<>();
     private StateSeries stateSeries;
     private final String matchUniqueId = UUID.randomUUID().toString().split("-")[0];
     private final MatchSpectatorManager matchSpectatorManager = new MatchSpectatorManager(this);
-    private final MatchTaskManager matchTaskManager = new MatchTaskManager();
+    private final TaskGroup taskGroup = new TaskGroup();
 
     @Override
     public boolean joinAsMember(IUser user) {
@@ -66,11 +63,12 @@ public abstract class Match implements IMatch {
     @Override
     public void start() {
         stateSeries.start();
-        matchTaskManager.repeatTask("heart-beat", stateSeries::update, updatePeriod.toMillis() / 50);
+        taskGroup.newTask("heart-beat").every(1).run(stateSeries::update);
     }
 
     @Override
     public void finish() {
+        new ArrayList<>(members).forEach(m -> leave(m, MatchLeaveReason.GAME_END));
         stateSeries.end();
     }
 
@@ -96,8 +94,8 @@ public abstract class Match implements IMatch {
     }
 
     @Override
-    public MatchTaskManager getTaskManager() {
-        return matchTaskManager;
+    public TaskGroup getTaskManager() {
+        return taskGroup;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package io.github.arenacore.match;
 
 import io.github.arenacore.match.spectator.MatchSpectatorManager;
-import io.github.arenacore.match.task.MatchTaskManager;
+import io.github.arenacore.match.task.TaskGroup;
 import io.github.arenacore.match.reason.MatchLeaveReason;
 import io.github.arenacore.user.IMember;
 import io.github.arenacore.user.IUser;
@@ -32,7 +32,7 @@ public interface IMatch {
 
     void setStateSeries(StateSeries stateSeries);
 
-    MatchTaskManager getTaskManager();
+    TaskGroup getTaskManager();
 
     MatchSpectatorManager getSpectatorManager();
 
