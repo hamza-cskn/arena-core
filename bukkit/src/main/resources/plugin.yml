@@ -1,6 +1,6 @@
-main: io.github.arenacore.ArenaCore
+main: mc.obliviate.arenacore.bukkit.BukkitArenaCore
 name: arena-core
-author: afg-zombies
+author: Mr_Obliviate
 version: 1.0.0
 api-version: 1.13
-description: arena-core plugin
+description: A mini-game core library which is independent from Bukkit.
