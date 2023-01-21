@@ -126,22 +126,22 @@ public class Task implements IArenaTask {
         if (this.period <= 0) {
             if (this.delay <= 0) {
                 if (this.async) {
-                    TaskSchedulerHandler.getInstance().async(this::tick);
+                    TaskScheduler.getInstance().async(this::tick);
                 } else {
-                    TaskSchedulerHandler.getInstance().sync(this::tick);
+                    TaskScheduler.getInstance().sync(this::tick);
                 }
             } else {
                 if (this.async) {
-                    TaskSchedulerHandler.getInstance().delayAsync(this::tick, delay);
+                    TaskScheduler.getInstance().delayAsync(this::tick, delay);
                 } else {
-                    TaskSchedulerHandler.getInstance().delaySync(this::tick, delay);
+                    TaskScheduler.getInstance().delaySync(this::tick, delay);
                 }
             }
         } else {
             if (this.async) {
-                TaskSchedulerHandler.getInstance().periodicAsync(this::tick, delay, period);
+                TaskScheduler.getInstance().periodicAsync(this::tick, delay, period);
             } else {
-                TaskSchedulerHandler.getInstance().periodicSync(this::tick, delay, period);
+                TaskScheduler.getInstance().periodicSync(this::tick, delay, period);
             }
         }
         if (this.currentState == State.RUNNING) {

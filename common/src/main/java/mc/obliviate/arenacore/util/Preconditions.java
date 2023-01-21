@@ -1,7 +1,5 @@
 package mc.obliviate.arenacore.util;
 
-import mc.obliviate.arenacore.user.IUserManager;
-
 public class Preconditions {
 
     public static <T> T checkNotNull(T reference) {
@@ -29,6 +27,18 @@ public class Preconditions {
     public static void checkState(boolean expression, Object errorMessage) {
         if (!expression) {
             throw new IllegalStateException(String.valueOf(errorMessage));
+        }
+    }
+
+    public static void checkArgument(boolean expression) {
+        if (!expression) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkArgument(boolean expression, Object errorMessage) {
+        if (!expression) {
+            throw new IllegalArgumentException(String.valueOf(errorMessage));
         }
     }
 }

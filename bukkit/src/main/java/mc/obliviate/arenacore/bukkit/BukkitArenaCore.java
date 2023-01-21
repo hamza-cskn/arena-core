@@ -3,9 +3,10 @@ package mc.obliviate.arenacore.bukkit;
 import mc.obliviate.arenacore.bukkit.task.BukkitTaskSchedulerImpl;
 import mc.obliviate.arenacore.match.AbstractMatch;
 import mc.obliviate.arenacore.match.reason.MatchLeaveReason;
-import mc.obliviate.arenacore.match.task.TaskSchedulerHandler;
+import mc.obliviate.arenacore.match.task.TaskScheduler;
 import mc.obliviate.arenacore.user.IMember;
 import mc.obliviate.arenacore.user.UserHandler;
+import mc.obliviate.arenacore.util.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -26,7 +27,7 @@ public class BukkitArenaCore extends JavaPlugin {
     public void onEnable() {
         getLogger().info("arena-core initialize process started.");
         Bukkit.getOnlinePlayers().forEach(p -> p.kickPlayer("You got kicked because initialize process isn't started."));
-        TaskSchedulerHandler.setInstance(new BukkitTaskSchedulerImpl());
+        TaskScheduler.setInstance(new BukkitTaskSchedulerImpl());
 
         Bukkit.getPluginManager().registerEvents(new Listener() {
             @EventHandler(priority = EventPriority.HIGH)

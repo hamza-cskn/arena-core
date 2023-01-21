@@ -31,6 +31,4 @@ public interface IUserManager<P> {
     boolean isSpectator(UUID playerUniqueId);
 
     Map<UUID, IUser> getUserMap();
-
-
 }

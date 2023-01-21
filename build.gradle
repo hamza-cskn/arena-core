@@ -13,13 +13,6 @@ tasks.jar {
     enabled = false
 }
 
-repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-}
-dependencies {
-    implementation 'com.github.Minikloon:FSMgasm:bd1b505'
-}
 
 subprojects {
     apply plugin: 'java'
@@ -57,6 +50,6 @@ subprojects {
 
     tasks.shadowJar {
         //archiveFileName.set(project.name + "-" + project.version + ".jar")
-        archiveFileName.set("arena-core.jar")
+        archiveFileName.set("arena-core-" + project.name + ".jar")
     }
 }

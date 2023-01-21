@@ -107,11 +107,6 @@ public abstract class AbstractMatch implements IMatch {
     }
 
     @Override
-    public Set<IMember> getMembers() {
-        return members;
-    }
-
-    @Override
     public String getId() {
         return matchUniqueId;
     }

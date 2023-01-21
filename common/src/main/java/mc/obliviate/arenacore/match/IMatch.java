@@ -1,8 +1,8 @@
 package mc.obliviate.arenacore.match;
 
+import mc.obliviate.arenacore.match.reason.MatchLeaveReason;
 import mc.obliviate.arenacore.match.spectator.ISpectatorManager;
 import mc.obliviate.arenacore.match.task.IArenaTaskGroup;
-import mc.obliviate.arenacore.match.reason.MatchLeaveReason;
 import mc.obliviate.arenacore.user.IMember;
 import mc.obliviate.arenacore.user.IUser;
 import net.minikloon.fsmgasm.State;
@@ -39,8 +39,6 @@ public interface IMatch {
     IArenaTaskGroup getTaskManager();
 
     ISpectatorManager getSpectatorManager();
-
-    Set<IMember> getMembers();
 
     String getId();
 }

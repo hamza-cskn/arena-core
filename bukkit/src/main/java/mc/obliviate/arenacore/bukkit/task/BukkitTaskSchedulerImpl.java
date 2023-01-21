@@ -1,10 +1,16 @@
 package mc.obliviate.arenacore.bukkit.task;
 
 import mc.obliviate.arenacore.bukkit.BukkitArenaCore;
-import mc.obliviate.arenacore.match.task.ITaskScheduler;
+import mc.obliviate.arenacore.match.task.TaskScheduler;
 import org.bukkit.Bukkit;
 
-public class BukkitTaskSchedulerImpl implements ITaskScheduler {
+public class BukkitTaskSchedulerImpl extends TaskScheduler {
+
+    private static final BukkitTaskSchedulerImpl BUKKIT_TASK_SCHEDULER = new BukkitTaskSchedulerImpl();
+
+    public static BukkitTaskSchedulerImpl scheduler() {
+        return BukkitTaskSchedulerImpl.BUKKIT_TASK_SCHEDULER;
+    }
 
     @Override
     public void sync(Runnable runnable) {
