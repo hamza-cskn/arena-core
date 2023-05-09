@@ -17,7 +17,7 @@ public interface BaseInventory {
     void items(BaseItem... items);
 
     default void clear() {
-        itemMap().forEach((slot, item) -> set(slot, BaseItem.emptyItem()));
+        itemMap().forEach((slot, item) -> set(slot, BaseItem.getEmptyItem()));
     }
 
 }
