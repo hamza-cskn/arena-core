@@ -1,20 +1,7 @@
-plugins {
-    id 'java'
-}
-
-group 'io.github'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
-
-}
-
 dependencies {
-    implementation 'com.github.Minikloon:FSMgasm:bd1b505'
     compileOnly 'org.spigotmc:spigot:1.16.4-R0.1-SNAPSHOT'
-    implementation project(":common")
+    implementation 'com.github.Minikloon:FSMgasm:bd1b505'
+    implementation project(":")
 }
-project.setLibsDirName('D:/Users/User/Desktop/Setups/LOCAL 1.19/plugins')
+
+project.setLibsDirName('../../target')

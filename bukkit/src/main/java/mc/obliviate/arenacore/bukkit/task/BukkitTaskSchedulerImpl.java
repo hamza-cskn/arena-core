@@ -1,7 +1,7 @@
 package mc.obliviate.arenacore.bukkit.task;
 
 import mc.obliviate.arenacore.bukkit.BukkitArenaCore;
-import mc.obliviate.arenacore.match.task.TaskScheduler;
+import mc.obliviate.arenacore.task.TaskScheduler;
 import org.bukkit.Bukkit;
 
 public class BukkitTaskSchedulerImpl extends TaskScheduler {

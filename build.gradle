@@ -10,9 +10,21 @@ sourceCompatibility = 8
 compileJava.options.encoding = 'UTF-8'
 
 tasks.jar {
-    enabled = false
+    enabled = true
 }
 
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.maven.apache.org/maven2/' }
+    maven { url 'https://repo.codemc.org/repository/nms/' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.Minikloon:FSMgasm:bd1b505'
+}
 
 subprojects {
     apply plugin: 'java'
@@ -25,15 +37,17 @@ subprojects {
     compileJava.options.encoding = 'UTF-8'
 
     repositories {
-        mavenLocal()
+        mavenCentral()
         maven { url 'https://repo.maven.apache.org/maven2/' }
         maven { url 'https://repo.codemc.org/repository/nms/' }
+        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
         maven { url 'https://jitpack.io' }
     }
 
     publishing {
         publications {
-            maven(MavenPublication) {
+            mavenpub(MavenPublication) {
                 groupId = project.group
                 version = project.version
                 artifactId = project.name
@@ -42,6 +56,7 @@ subprojects {
         }
     }
 
+
     artifacts.archives(tasks.shadowJar)
 
     tasks.jar {
@@ -49,7 +64,6 @@ subprojects {
     }
 
     tasks.shadowJar {
-        //archiveFileName.set(project.name + "-" + project.version + ".jar")
         archiveFileName.set("arena-core-" + project.name + ".jar")
     }
 }

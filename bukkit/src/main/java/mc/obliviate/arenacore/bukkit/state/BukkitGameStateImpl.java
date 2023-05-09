@@ -1,7 +1,7 @@
 package mc.obliviate.arenacore.bukkit.state;
 
 import mc.obliviate.arenacore.bukkit.BukkitArenaCore;
-import mc.obliviate.arenacore.match.IMatch;
+import mc.obliviate.arenacore.match.Match;
 import mc.obliviate.arenacore.match.state.GameState;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -13,7 +13,7 @@ public abstract class BukkitGameStateImpl extends GameState {
 
     private final Map<String, Listener> listeners = new HashMap<>();
 
-    protected BukkitGameStateImpl(IMatch match) {
+    protected BukkitGameStateImpl(Match match) {
         super(match);
     }
 

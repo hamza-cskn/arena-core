@@ -3,10 +3,9 @@ package mc.obliviate.arenacore.bukkit;
 import mc.obliviate.arenacore.bukkit.task.BukkitTaskSchedulerImpl;
 import mc.obliviate.arenacore.match.AbstractMatch;
 import mc.obliviate.arenacore.match.reason.MatchLeaveReason;
-import mc.obliviate.arenacore.match.task.TaskScheduler;
-import mc.obliviate.arenacore.user.IMember;
+import mc.obliviate.arenacore.task.TaskScheduler;
+import mc.obliviate.arenacore.user.Member;
 import mc.obliviate.arenacore.user.UserHandler;
-import mc.obliviate.arenacore.util.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,13 +31,13 @@ public class BukkitArenaCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Listener() {
             @EventHandler(priority = EventPriority.HIGH)
             public void onConnect(PlayerJoinEvent event) {
-                UserHandler.getInstance().loadUser(event.getPlayer());
+                UserHandler.getInstance().loadUser(event.getPlayer().getUniqueId());
             }
 
             @EventHandler
             public void onDisconnect(PlayerQuitEvent event) {
                 //I can't use it without variable. lol.
-                Optional<IMember> var = UserHandler.getInstance().findMember(event.getPlayer().getUniqueId());
+                Optional<Member> var = UserHandler.getInstance().findMember(event.getPlayer().getUniqueId());
                 var.ifPresent(member -> member.getMatch().leave(member, MatchLeaveReason.DISCONNECT));
             }
         }, this);

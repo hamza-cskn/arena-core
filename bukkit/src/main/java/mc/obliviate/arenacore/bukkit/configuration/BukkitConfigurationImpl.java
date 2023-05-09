@@ -5,8 +5,6 @@ import mc.obliviate.arenacore.base.position.Position;
 import mc.obliviate.arenacore.configuration.Configuration;
 import mc.obliviate.arenacore.util.Preconditions;
 import org.bukkit.configuration.ConfigurationSection;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -35,19 +33,19 @@ public class BukkitConfigurationImpl implements Configuration {
         return section;
     }
 
-    @NotNull
+    
     @Override
     public Set<String> getKeys(boolean depth) {
         return section.getKeys(depth);
     }
 
-    @NotNull
+    
     @Override
     public String getName() {
         return section.getName();
     }
 
-    @Nullable
+    
     @Override
     public Configuration getRoot() {
         return BukkitConfigurationImpl.toBase(section.getRoot());
@@ -58,140 +56,140 @@ public class BukkitConfigurationImpl implements Configuration {
         return section.isSet(key);
     }
 
-    @Nullable
+    
     @Override
     public Configuration getParent() {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public Object get(@NotNull String var1) {
+    public Object get( String var1) {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public Object get(@NotNull String var1, @Nullable Object var2) {
-        return null;
-    }
-
-    @Override
-    public void set(@NotNull String var1, @Nullable Object var2) {
-
-    }
-
-    @NotNull
-    @Override
-    public Configuration createSection(@NotNull String var1) {
-        return null;
-    }
-
-    @NotNull
-    @Override
-    public Configuration createSection(@NotNull String var1, @NotNull Map<?, ?> var2) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public String getString(@NotNull String var1) {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public String getString(@NotNull String var1, @Nullable String var2) {
+    public Object get( String var1,  Object var2) {
         return null;
     }
 
     @Override
-    public int getInt(@NotNull String var1) {
+    public void set( String var1,  Object var2) {
+
+    }
+
+    
+    @Override
+    public Configuration createSection( String var1) {
+        return null;
+    }
+
+    
+    @Override
+    public Configuration createSection( String var1,  Map<?, ?> var2) {
+        return null;
+    }
+
+    
+    @Override
+    public String getString( String var1) {
+        return null;
+    }
+
+    
+    @Override
+    public String getString( String var1,  String var2) {
+        return null;
+    }
+
+    @Override
+    public int getInt( String var1) {
         return 0;
     }
 
     @Override
-    public int getInt(@NotNull String var1, int var2) {
+    public int getInt( String var1, int var2) {
         return 0;
     }
 
     @Override
-    public boolean getBoolean(@NotNull String var1) {
+    public boolean getBoolean( String var1) {
         return false;
     }
 
     @Override
-    public boolean getBoolean(@NotNull String var1, boolean var2) {
+    public boolean getBoolean( String var1, boolean var2) {
         return false;
     }
 
     @Override
-    public double getDouble(@NotNull String var1) {
+    public double getDouble( String var1) {
         return 0;
     }
 
     @Override
-    public double getDouble(@NotNull String var1, double var2) {
+    public double getDouble( String var1, double var2) {
         return 0;
     }
 
     @Override
-    public long getLong(@NotNull String var1) {
+    public long getLong( String var1) {
         return 0;
     }
 
     @Override
-    public long getLong(@NotNull String var1, long var2) {
+    public long getLong( String var1, long var2) {
         return 0;
     }
 
-    @NotNull
+    
     @Override
-    public List<String> getStringList(@NotNull String var1) {
+    public List<String> getStringList( String var1) {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public BaseItem getItem(@NotNull String var1) {
+    public BaseItem getItem( String var1) {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public BaseItem getItem(@NotNull String var1, @Nullable BaseItem var2) {
+    public BaseItem getItem( String var1,  BaseItem var2) {
         return null;
     }
 
     @Override
-    public boolean isItem(@NotNull String var1) {
+    public boolean isItem( String var1) {
         return false;
     }
 
-    @Nullable
+    
     @Override
-    public Position getPosition(@NotNull String var1) {
+    public Position getPosition( String var1) {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public Position getPosition(@NotNull String var1, @Nullable Position var2) {
+    public Position getPosition( String var1,  Position var2) {
         return null;
     }
 
-    @Nullable
+    
     @Override
-    public Configuration getConfigurationSection(@NotNull String var1) {
+    public Configuration getConfigurationSection( String var1) {
         return null;
     }
 
     @Override
-    public boolean isConfigurationSection(@NotNull String var1) {
+    public boolean isConfigurationSection( String var1) {
         return false;
     }
 
-    @Nullable
+    
     @Override
     public Configuration getDefaultSection() {
         return null;
